@@ -5,7 +5,7 @@ import java.util.Objects;
 public class App {
     public static void main(String[] args) {
         FileHarvester fh = new FileHarvester(getTestFilePath());
-        fh.fetchData();
+        fh.fetchData().forEach(System.out::println);
     }
 
     private static String getTestFilePath() {
