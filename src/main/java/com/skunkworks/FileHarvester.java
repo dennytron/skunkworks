@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class FileHarvester implements DataHarvester {
+public class FileHarvester extends DataUtils implements DataHarvester {
 
     private List<String> words;
     private Map<String, Long> wordCounts;
@@ -48,9 +48,5 @@ public class FileHarvester implements DataHarvester {
         numberWordCounts = words.stream()
                 .filter(FileHarvester::isDigit)
                 .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
-    }
-
-    private static boolean isDigit(String word) {
-        return word.chars().allMatch(Character::isDigit);
     }
 }
