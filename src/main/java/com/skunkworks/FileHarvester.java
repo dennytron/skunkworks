@@ -24,13 +24,7 @@ public class FileHarvester implements DataHarvester {
             e.printStackTrace();
         }
 
-        assert words != null;
-        wordCounts = words.stream()
-                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
-        numberWordCounts = words.stream()
-                .filter(FileHarvester::isDigit)
-                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
-
+        populateWordCounts();
     }
 
     public List<String> getWords() {
@@ -47,5 +41,16 @@ public class FileHarvester implements DataHarvester {
 
     private static boolean isDigit(String word) {
         return word.chars().allMatch(Character::isDigit);
+    }
+
+    private void populateWordCounts() {
+        assert words != null;
+
+        wordCounts = words.stream()
+                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+
+        numberWordCounts = words.stream()
+                .filter(FileHarvester::isDigit)
+                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
     }
 }
