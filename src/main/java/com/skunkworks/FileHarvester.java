@@ -8,23 +8,17 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class FileHarvester extends DataUtils implements Harvester {
+    private String fileName;
     private List<String> words;
     private List<String> wordSets;
     private Map<String, Long> wordCounts;
     private Map<String, Long> numberWordCounts;
 
     FileHarvester(String fileName) {
-        try {
-            words = Files.lines(Paths.get(fileName))
-                    .flatMap(line -> Pattern.compile(" ").splitAsStream(line))
-                    .collect(Collectors.toList());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        this.fileName = fileName;
+        populateWordList();
         populateWordCounts();
-        populateWordSets();
+        populateWordGroups();
     }
 
     public List<String> getWords() {
@@ -43,7 +37,18 @@ public class FileHarvester extends DataUtils implements Harvester {
         return numberWordCounts;
     }
 
-    private void populateWordCounts() {
+    public void populateWordList() {
+        try {
+            words = Files.lines(Paths.get(fileName))
+                    .flatMap(line -> Pattern.compile(" ").splitAsStream(line))
+                    .collect(Collectors.toList());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void populateWordCounts() {
         assert words != null;
 
         wordCounts = words.stream()
@@ -54,7 +59,7 @@ public class FileHarvester extends DataUtils implements Harvester {
                 .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
     }
 
-    private void populateWordSets() {
+    public void populateWordGroups() {
         List<String> popper = new ArrayList<>();
         wordSets = new ArrayList<>();
 
