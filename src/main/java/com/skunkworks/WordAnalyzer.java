@@ -17,7 +17,6 @@ class WordAnalyzer {
                 popper.remove(0);
             }
         });
-
         return wordSets;
     }
 

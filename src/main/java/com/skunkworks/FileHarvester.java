@@ -17,6 +17,7 @@ public class FileHarvester extends WordAnalyzer implements Harvester {
     FileHarvester(String fileName) {
         this.fileName = fileName;
         populateWordList();
+
         wordCounts = populateWordCounts(words);
         wordSets = populateWordGroups(words);
         numberWordCounts = populateNumberCounts(words);
@@ -49,5 +50,4 @@ public class FileHarvester extends WordAnalyzer implements Harvester {
             e.printStackTrace();
         }
     }
-
 }
