@@ -32,16 +32,16 @@ public class FileHarvester extends DataUtils implements Harvester {
         return words;
     }
 
+    public List<String> getWordSets() {
+        return wordSets;
+    }
+
     public Map<String, Long> getWordCounts() {
         return wordCounts;
     }
 
     public Map<String, Long> getNumberWordCounts() {
         return numberWordCounts;
-    }
-
-    public List<String> getWordSets() {
-        return wordSets;
     }
 
     private void populateWordCounts() {
