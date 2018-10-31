@@ -21,16 +21,12 @@ public class TestWordCollector {
     @Test
     public void testNumberCounts() {
         // Expectation -- If FileHarvester reads a file with only numbers in it
-        FileHarvester fh = new FileHarvester(DataUtils.getTestFile("numbers.txt"));
+        FileHarvester fh = new FileHarvester(DataUtils.getTestFile("words.txt"));
         Map<String, Long> expected = new HashMap<>();
         Map<String, Long> actual = fh.getNumberCounts();
         expected.put("1", 1L);
-        expected.put("2", 1L);
+        expected.put("2", 2L);
         expected.put("3", 1L);
-        expected.put("4", 2L);
-        expected.put("5", 1L);
-        expected.put("6", 1L);
-        expected.put("7", 1L);
         Assert.assertEquals(expected, actual);
     }
 
@@ -48,11 +44,12 @@ public class TestWordCollector {
         expected.add("1");
         expected.add("2");
         expected.add("3");
+        expected.add("2");
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void testWordSets() {
+    public void testWordGroups() {
         // Expectation - WordSets collect groups of three words, start to finish, through a word list
         //               Ensure that the word set collector is populating the collection as expected
         FileHarvester fh = new FileHarvester(DataUtils.getTestFile("song.txt"));
@@ -63,9 +60,26 @@ public class TestWordCollector {
         expected.add("go again on");
         expected.add("again on my");
         expected.add("on my own");
+        expected.add("my own on");
+        expected.add("own on my");
+        expected.add("on my own");
         Assert.assertEquals(expected, actual);
     }
 
-
-
+    @Test
+    public void testWordCounts() {
+        // Expectation - Word Counts counts all words and provides counts
+        //               Ensure the word set collector is populating the collection as expected
+        FileHarvester fh = new FileHarvester(DataUtils.getTestFile("words.txt"));
+        Map<String, Long> expected = new HashMap<>();
+        Map<String, Long> actual = fh.getWordCounts();
+        expected.put("this", 1L);
+        expected.put("is", 1L);
+        expected.put("a", 1L);
+        expected.put("test", 1L);
+        expected.put("1", 1L);
+        expected.put("2", 2L);
+        expected.put("3", 1L);
+        Assert.assertEquals(expected, actual);
+    }
 }

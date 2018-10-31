@@ -10,17 +10,18 @@ import java.util.stream.Collectors;
 public class FileHarvester extends WordAnalyzer implements Harvester {
     private String fileName;
     private List<String> words;
-    private List<String> wordSets;
+    private List<String> wordGroups;
     private Map<String, Long> wordCounts;
-    private Map<String, Long> numberWordCounts;
+    private Map<String, Long> numberCounts;
+    private Map<String, Long> wordGroupCounts;
 
     FileHarvester(String fileName) {
         this.fileName = fileName;
         populateWordList();
-
         wordCounts = populateWordCounts(words);
-        wordSets = populateWordGroups(words);
-        numberWordCounts = populateNumberCounts(words);
+        wordGroups = populateWordGroups(words);
+        numberCounts = populateNumberCounts(words);
+        wordGroupCounts = populateWordCounts(wordGroups);
     }
 
     public List<String> getWords() {
@@ -28,7 +29,7 @@ public class FileHarvester extends WordAnalyzer implements Harvester {
     }
 
     public List<String> getWordGroups() {
-        return wordSets;
+        return wordGroups;
     }
 
     public Map<String, Long> getWordCounts() {
@@ -36,7 +37,11 @@ public class FileHarvester extends WordAnalyzer implements Harvester {
     }
 
     public Map<String, Long> getNumberCounts() {
-        return numberWordCounts;
+        return numberCounts;
+    }
+
+    public Map<String, Long> getWordGroupCounts() {
+        return wordGroupCounts;
     }
 
     private void populateWordList() {
