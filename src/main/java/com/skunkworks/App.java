@@ -10,6 +10,7 @@ public class App {
         fh.getWords().forEach(System.out::println);
         fh.getWordCounts().forEach((word, count) -> System.out.println((word + ":" + count.toString())));
         fh.getNumberWordCounts().forEach((word, count) -> System.out.println((word + ":" + count.toString())));
+        fh.getWordSets().forEach(System.out::println);
     }
 
     private static String getTestFilePath() {

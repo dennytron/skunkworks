@@ -3,8 +3,7 @@ package com.skunkworks;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -25,6 +24,7 @@ public class FileHarvester extends DataUtils implements Harvester {
         }
 
         populateWordCounts();
+        populateWordSets();
     }
 
     public List<String> getWords() {
@@ -55,6 +55,15 @@ public class FileHarvester extends DataUtils implements Harvester {
     }
 
     private void populateWordSets() {
+        List<String> popper = new ArrayList<>();
+        wordSets = new ArrayList<>();
 
+        words.forEach( word -> {
+            popper.add(word);
+            if (popper.size() == 3) {
+                wordSets.add(String.join(" ", popper));
+                popper.remove(0);
+            }
+        });
     }
 }
