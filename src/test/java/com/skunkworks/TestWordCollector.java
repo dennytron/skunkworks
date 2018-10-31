@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import junit.framework.TestCase;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestWordCollector extends TestCase {
+public class TestWordCollector {
     @Before
     public void setUp() {
     }
@@ -21,7 +21,6 @@ public class TestWordCollector extends TestCase {
     @Test
     public void testNumberCounts() {
         // Expectation -- If FileHarvester reads a file with only numbers in it
-        //                numberWordCounts should contain values.
         FileHarvester fh = new FileHarvester(DataUtils.getTestFile("numbers.txt"));
         Map<String, Long> expected = new HashMap<>();
         Map<String, Long> actual = fh.getNumberCounts();
@@ -32,7 +31,7 @@ public class TestWordCollector extends TestCase {
         expected.put("5", 1L);
         expected.put("6", 1L);
         expected.put("7", 1L);
-        assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -49,7 +48,7 @@ public class TestWordCollector extends TestCase {
         expected.add("1");
         expected.add("2");
         expected.add("3");
-        assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -64,7 +63,7 @@ public class TestWordCollector extends TestCase {
         expected.add("go again on");
         expected.add("again on my");
         expected.add("on my own");
-        assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
     }
 
 
