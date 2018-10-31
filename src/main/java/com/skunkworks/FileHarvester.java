@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class FileHarvester extends DataUtils implements Harvester {
 
     private List<String> words;
+    private List<String> wordSets;
     private Map<String, Long> wordCounts;
     private Map<String, Long> numberWordCounts;
 
@@ -39,6 +40,10 @@ public class FileHarvester extends DataUtils implements Harvester {
         return numberWordCounts;
     }
 
+    public List<String> getWordSets() {
+        return wordSets;
+    }
+
     private void populateWordCounts() {
         assert words != null;
 
@@ -48,5 +53,9 @@ public class FileHarvester extends DataUtils implements Harvester {
         numberWordCounts = words.stream()
                 .filter(FileHarvester::isDigit)
                 .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+    }
+
+    private void populateWordSets() {
+
     }
 }
