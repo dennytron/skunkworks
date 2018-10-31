@@ -39,10 +39,6 @@ public class FileHarvester implements DataHarvester {
         return numberWordCounts;
     }
 
-    private static boolean isDigit(String word) {
-        return word.chars().allMatch(Character::isDigit);
-    }
-
     private void populateWordCounts() {
         assert words != null;
 
@@ -52,5 +48,9 @@ public class FileHarvester implements DataHarvester {
         numberWordCounts = words.stream()
                 .filter(FileHarvester::isDigit)
                 .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+    }
+
+    private static boolean isDigit(String word) {
+        return word.chars().allMatch(Character::isDigit);
     }
 }
