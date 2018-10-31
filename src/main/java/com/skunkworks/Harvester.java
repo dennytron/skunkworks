@@ -7,8 +7,5 @@ public interface Harvester {
     List<String> getWords();
     List<String> getWordGroups();
     Map<String, Long> getWordCounts();
-    Map<String, Long> getNumberWordCounts();
-    void populateWordList();
-    void populateWordCounts();
-    void populateWordGroups();
+    Map<String, Long> getNumberCounts();
 }

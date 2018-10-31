@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class FileHarvester extends DataUtils implements Harvester {
+public class FileHarvester extends WordAnalyzer implements Harvester {
     private String fileName;
     private List<String> words;
     private List<String> wordSets;
@@ -17,8 +17,9 @@ public class FileHarvester extends DataUtils implements Harvester {
     FileHarvester(String fileName) {
         this.fileName = fileName;
         populateWordList();
-        populateWordCounts();
-        populateWordGroups();
+        wordCounts = populateWordCounts(words);
+        wordSets = populateWordGroups(words);
+        numberWordCounts = populateNumberCounts(words);
     }
 
     public List<String> getWords() {
@@ -33,14 +34,15 @@ public class FileHarvester extends DataUtils implements Harvester {
         return wordCounts;
     }
 
-    public Map<String, Long> getNumberWordCounts() {
+    public Map<String, Long> getNumberCounts() {
         return numberWordCounts;
     }
 
-    public void populateWordList() {
+    private void populateWordList() {
         try {
             words = Files.lines(Paths.get(fileName))
                     .flatMap(line -> Pattern.compile(" ").splitAsStream(line))
+                    .map(String::trim)
                     .collect(Collectors.toList());
 
         } catch (IOException e) {
@@ -48,27 +50,4 @@ public class FileHarvester extends DataUtils implements Harvester {
         }
     }
 
-    public void populateWordCounts() {
-        assert words != null;
-
-        wordCounts = words.stream()
-                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
-
-        numberWordCounts = words.stream()
-                .filter(FileHarvester::isDigit)
-                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
-    }
-
-    public void populateWordGroups() {
-        List<String> popper = new ArrayList<>();
-        wordSets = new ArrayList<>();
-
-        words.forEach( word -> {
-            popper.add(word);
-            if (popper.size() == 3) {
-                wordSets.add(String.join(" ", popper));
-                popper.remove(0);
-            }
-        });
-    }
 }

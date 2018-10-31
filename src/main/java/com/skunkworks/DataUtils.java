@@ -7,7 +7,7 @@ class DataUtils {
         return word.chars().allMatch(Character::isDigit);
     }
 
-    static String getTestFilePath() {
-        return Objects.requireNonNull(App.class.getClassLoader().getResource("test_file.txt")).getFile();
+    static String getTestFile(String fileName) {
+        return Objects.requireNonNull(App.class.getClassLoader().getResource(fileName)).getFile();
     }
 }
