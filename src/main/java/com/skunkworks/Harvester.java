@@ -5,11 +5,9 @@ import java.util.Map;
 
 public interface Harvester {
     List<String> getWords();
-    List<String> getWordSets();
-
+    List<String> getWordGroups();
     Map<String, Long> getWordCounts();
     Map<String, Long> getNumberWordCounts();
-
     void populateWordList();
     void populateWordCounts();
     void populateWordGroups();

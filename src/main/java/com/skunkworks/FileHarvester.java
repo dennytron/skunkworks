@@ -25,7 +25,7 @@ public class FileHarvester extends DataUtils implements Harvester {
         return words;
     }
 
-    public List<String> getWordSets() {
+    public List<String> getWordGroups() {
         return wordSets;
     }
 
