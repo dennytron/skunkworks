@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class FileHarvester extends DataUtils implements Harvester {
-
     private List<String> words;
     private List<String> wordSets;
     private Map<String, Long> wordCounts;
