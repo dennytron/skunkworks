@@ -3,7 +3,7 @@ package com.skunkworks;
 import java.util.List;
 import java.util.Map;
 
-public interface DataHarvester {
+public interface Harvester {
 
     List<String> getWords();
     Map<String, Long> getWordCounts();
