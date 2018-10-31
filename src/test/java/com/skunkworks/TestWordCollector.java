@@ -1,12 +1,10 @@
 package com.skunkworks;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.junit.Assert.assertEquals;
 
 public class TestWordCollector extends TestUtils {
@@ -20,8 +18,8 @@ public class TestWordCollector extends TestUtils {
 
     @Test
     public void loadSomeData() {
-        // Expecation -- If FileHarvester reads a file with only numbers in it
-        //               numberWordCounts should contain values.
+        // Expectation -- If FileHarvester reads a file with only numbers in it
+        //                numberWordCounts should contain values.
         FileHarvester fh = new FileHarvester(getJustNumbersFilePath());
         Map<String, Long> expected = new HashMap<>();
         Map<String, Long> actual = fh.getNumberWordCounts();
@@ -32,7 +30,6 @@ public class TestWordCollector extends TestUtils {
         expected.put("5", 1L);
         expected.put("6", 1L);
         expected.put("7", 1L);
-
         assertEquals(expected, actual);
     }
 
