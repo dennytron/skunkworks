@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 public class FileHarvester implements DataHarvester {
 
     private List<String> words;
+    private Map<String, Long> wordCounts;
+    private Map<String, Long> numberWordCounts;
 
     FileHarvester(String fileName) {
         try {
@@ -21,6 +23,14 @@ public class FileHarvester implements DataHarvester {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        assert words != null;
+        wordCounts = words.stream()
+                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+        numberWordCounts = words.stream()
+                .filter(FileHarvester::isDigit)
+                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+
     }
 
     public List<String> getWords() {
@@ -28,13 +38,11 @@ public class FileHarvester implements DataHarvester {
     }
 
     public Map<String, Long> getWordCounts() {
-        return words.stream().collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+        return wordCounts;
     }
 
     public Map<String, Long> getNumberWordCounts() {
-        return words.stream()
-                .filter(FileHarvester::isDigit)
-                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+        return numberWordCounts;
     }
 
     private static boolean isDigit(String word) {
