@@ -40,7 +40,7 @@ reader (FileHarvester) reads a text file, but other word readers could be a REST
 
 Class that provides IO functionality for reading words from a file into a List.
 
-*PatternCounter*
+*WordAnalyzer*
 
 Generic, reusable class that enables a developer to collect, analyze, and count a words in a List.
 
