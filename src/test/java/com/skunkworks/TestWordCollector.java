@@ -21,7 +21,7 @@ public class TestWordCollector {
     @Test
     public void testNumberCounts() {
         // Expectation -- If FileHarvester reads a file with only numbers in it
-        FileHarvester fh = new FileHarvester(DataUtils.getTestFile("words.txt"));
+        FileHarvester fh = new FileHarvester(DataUtils.getFileFromResources("words.txt"));
         Map<String, Long> expected = new HashMap<>();
         Map<String, Long> actual = fh.getNumberCounts();
         expected.put("1", 1L);
@@ -34,7 +34,7 @@ public class TestWordCollector {
     public void testWordCollector() {
         // Expectation - FileHarvester reads each line of a text file and splits words on space
         //               and flattens the results into one List<String>
-        FileHarvester fh = new FileHarvester(DataUtils.getTestFile("words.txt"));
+        FileHarvester fh = new FileHarvester(DataUtils.getFileFromResources("words.txt"));
         List<String> expected = new ArrayList<>();
         List<String> actual = fh.getWords();
         expected.add("this");
@@ -52,7 +52,7 @@ public class TestWordCollector {
     public void testWordGroups() {
         // Expectation - WordSets collect groups of three words, start to finish, through a word list
         //               Ensure that the word set collector is populating the collection as expected
-        FileHarvester fh = new FileHarvester(DataUtils.getTestFile("song.txt"));
+        FileHarvester fh = new FileHarvester(DataUtils.getFileFromResources("song.txt"));
         List<String> expected = new ArrayList<>();
         List<String> actual = fh.getWordGroups();
         expected.add("here i go");
@@ -70,16 +70,13 @@ public class TestWordCollector {
     public void testWordCounts() {
         // Expectation - Word Counts counts all words and provides counts
         //               Ensure the word set collector is populating the collection as expected
-        FileHarvester fh = new FileHarvester(DataUtils.getTestFile("words.txt"));
+        FileHarvester fh = new FileHarvester(DataUtils.getFileFromResources("words.txt"));
         Map<String, Long> expected = new HashMap<>();
         Map<String, Long> actual = fh.getWordCounts();
         expected.put("this", 1L);
         expected.put("is", 1L);
         expected.put("a", 1L);
         expected.put("test", 1L);
-        expected.put("1", 1L);
-        expected.put("2", 2L);
-        expected.put("3", 1L);
         Assert.assertEquals(expected, actual);
     }
 }
