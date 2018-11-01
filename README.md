@@ -1,5 +1,7 @@
 Build Instructions:
 
+Create the runnable fatjar file:
+
 `maven package`
 
 though, a fatjar file is included in the `bin/` directory
