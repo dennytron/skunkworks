@@ -4,6 +4,10 @@ Build Instructions:
 
 though, a fatjar file is included
 
+Run Tests:
+
+`maven test`
+
 Usage:
 
 `Usage: java -jar [jar] [file] [word_counts|number_counts|group_counts]`

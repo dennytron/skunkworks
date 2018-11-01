@@ -7,6 +7,7 @@
 *.tar.gz
 *.rar
 
+*.iml
 PatternCounter.iml
 target/*
 wordulator.iml
