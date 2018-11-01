@@ -21,6 +21,8 @@ Goal:
 Write an extensible and reusable application that enables a user to provide 
 a list of words in a file and receive a print-out of word counts and patterns.
 
+Example files are provided in the `src/main/resources` directory.
+
 Assumptions:
 
 - The output showing counts of each unique number will exclude words: 
